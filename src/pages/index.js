@@ -1,5 +1,7 @@
 import React from 'react'
+import { Link } from 'gatsby';
 import styled, { createGlobalStyle } from 'styled-components';
+import { colors } from '../utils/colors';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -19,7 +21,7 @@ const StyledWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: pink;
+  background: ${colors.dark};
   position: relative;
 `;
 
@@ -28,12 +30,42 @@ const H1 = styled.h1`
   color:  ${({isBlue}) => isBlue ? 'blue' : 'white'};
 `;
 
+const BlueH1 = styled(H1)`
+  color: blue;
+`
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: white;
+  font-size: 2em;
+  font-weight: 700;
+`;
+
+const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  width: ${({width}) => width};
+  height: 40px;
+  background: ${colors.primary};
+  border-radius: 50px;
+  border: none;
+  color: ${colors.white};
+  font-size: 1em;
+  font-weight: 800;
+  transition: box-shadow .3s ease;
+  
+  :hover {
+    box-shadow: 0 10px 20px -15px red;
+  }
+`;
+
 const IndexPage = () => (
   <>
   <GlobalStyle/>
   <StyledWrapper className="roman">
-    <H1 isBig>Hi people</H1>
-    <H1 isBlue>Hi people</H1>
+    <Button width="250px" as={Link} to="/about">About page</Button>
   </StyledWrapper>
   </>
 )
